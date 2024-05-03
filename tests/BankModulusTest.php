@@ -15,13 +15,13 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
     {
         $modulus = new BankModulus();
 
-        $this->assertInstanceOf('Cs278\\BankModulus\\BankModulus', $modulus);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankModulus::class, $modulus);
     }
 
     public function testConstructorInvalidSpec(): void
     {
         $this->expectException(
-            'Cs278\\BankModulus\\Exception\\InvalidArgumentException'
+            \Cs278\BankModulus\Exception\InvalidArgumentException::class
         );
 
         $this->expectExceptionMessage(
@@ -46,7 +46,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         $modulus = new BankModulus(new Mock\SpecPass());
         $error = error_get_last();
 
-        $this->assertInstanceOf('Cs278\\BankModulus\\BankModulus', $modulus);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankModulus::class, $modulus);
         $this->assertArrayContains([
             'message' => 'Passing an instance of SpecInterface to Cs278\\BankModulus\\BankModulus::__construct() is deprecated and will be removed in version 2.0.0.',
             'type' => \E_USER_DEPRECATED,
@@ -91,9 +91,9 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
 
         $result = $modulus->lookup('12-34-56', '12345678');
 
-        $this->assertInstanceOf('Cs278\BankModulus\Result', $result);
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
-        $this->assertInstanceOf('Cs278\BankModulus\SortCode', $result->getSortCode());
+        $this->assertInstanceOf(\Cs278\BankModulus\Result::class, $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\SortCode::class, $result->getSortCode());
         $this->assertSame('654321', $result->getSortCode()->getString());
         $this->assertSame('87654321', $result->getAccountNumber());
         $this->assertTrue($result->isValidated());
@@ -109,9 +109,9 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
 
         $result = $modulus->lookup('12-34-56', '12345678');
 
-        $this->assertInstanceOf('Cs278\BankModulus\Result', $result);
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
-        $this->assertInstanceOf('Cs278\BankModulus\SortCode', $result->getSortCode());
+        $this->assertInstanceOf(\Cs278\BankModulus\Result::class, $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\SortCode::class, $result->getSortCode());
         $this->assertSame('654321', $result->getSortCode()->getString());
         $this->assertSame('87654321', $result->getAccountNumber());
         $this->assertTrue($result->isValidated());
@@ -127,9 +127,9 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
 
         $result = $modulus->lookup('12-34-56', '12345678');
 
-        $this->assertInstanceOf('Cs278\BankModulus\Result', $result);
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
-        $this->assertInstanceOf('Cs278\BankModulus\SortCode', $result->getSortCode());
+        $this->assertInstanceOf(\Cs278\BankModulus\Result::class, $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\SortCode::class, $result->getSortCode());
         $this->assertSame('654321', $result->getSortCode()->getString());
         $this->assertSame('87654321', $result->getAccountNumber());
         $this->assertFalse($result->isValidated());
@@ -145,9 +145,9 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
 
         $result = $modulus->lookup('12-34-56', '12345678');
 
-        $this->assertInstanceOf('Cs278\BankModulus\Result', $result);
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
-        $this->assertInstanceOf('Cs278\BankModulus\SortCode', $result->getSortCode());
+        $this->assertInstanceOf(\Cs278\BankModulus\Result::class, $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\SortCode::class, $result->getSortCode());
         $this->assertSame('123456', $result->getSortCode()->getString());
         $this->assertSame('12345678', $result->getAccountNumber());
         $this->assertTrue($result->isValidated());
@@ -214,8 +214,8 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
      */
     public function testMethodInputValidation(): void
     {
-        $spec = $this->getMockForAbstractClass('Cs278\BankModulus\Spec\SpecInterface');
-        $normalizer = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountNormalizer\NormalizerInterface');
+        $spec = $this->getMockForAbstractClass(\Cs278\BankModulus\Spec\SpecInterface::class);
+        $normalizer = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountNormalizer\NormalizerInterface::class);
 
         $modulus = new BankModulus(new SimpleSpecFactory($spec), $normalizer);
 
@@ -232,8 +232,8 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
                         throw $e;
                     }
 
-                    $this->assertInstanceOf('Cs278\BankModulus\Exception\Exception', $e);
-                    $this->assertInstanceOf('Cs278\BankModulus\Exception\InvalidArgumentException', $e);
+                    $this->assertInstanceOf(\Cs278\BankModulus\Exception\Exception::class, $e);
+                    $this->assertInstanceOf(\Cs278\BankModulus\Exception\InvalidArgumentException::class, $e);
                     $this->assertInstanceOf('InvalidArgumentException', $e);
                     $this->assertSame('Sort code must be a string', $e->getMessage());
 
@@ -258,8 +258,8 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
                         throw $e;
                     }
 
-                    $this->assertInstanceOf('Cs278\BankModulus\Exception\Exception', $e);
-                    $this->assertInstanceOf('Cs278\BankModulus\Exception\InvalidArgumentException', $e);
+                    $this->assertInstanceOf(\Cs278\BankModulus\Exception\Exception::class, $e);
+                    $this->assertInstanceOf(\Cs278\BankModulus\Exception\InvalidArgumentException::class, $e);
                     $this->assertInstanceOf('InvalidArgumentException', $e);
                     $this->assertSame('Account number must be a string', $e->getMessage());
 

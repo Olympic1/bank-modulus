@@ -16,7 +16,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
         $expectedSortCode = '166432';
         $expectedAccountNumber = '01234567';
 
-        $mock = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountNormalizer\NormalizerInterface');
+        $mock = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountNormalizer\NormalizerInterface::class);
 
         $mock
             ->expects($this->any())
@@ -36,7 +36,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
 
         $result = $normalizer->normalize($bankAccount);
 
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
         $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
         $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
@@ -52,7 +52,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
 
         $result = $normalizer->normalize($bankAccount);
 
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
         $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
         $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
@@ -65,7 +65,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
 
         $result = $normalizer->normalize($bankAccount);
 
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
         $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
         $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
@@ -86,7 +86,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
 
             $result = $normalizer->normalize($bankAccount);
 
-            $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+            $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
             $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
             $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
             $this->assertSame($bankAccount, $result->getOriginalBankAccount());

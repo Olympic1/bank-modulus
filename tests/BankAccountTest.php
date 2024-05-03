@@ -14,9 +14,9 @@ final class BankAccountTest extends \PHPUnit\Framework\TestCase
             new BankAccount('112233', $accountNumber);
         } catch (\Exception $e) {
             $this->assertInstanceOf('InvalidArgumentException', $e);
-            $this->assertInstanceOf('Cs278\BankModulus\Exception\InvalidArgumentException', $e);
-            $this->assertInstanceOf('Cs278\BankModulus\Exception\Exception', $e);
-            $this->assertNotInstanceOf('Cs278\BankModulus\Exception\AccountNumberInvalidException', $e);
+            $this->assertInstanceOf(\Cs278\BankModulus\Exception\InvalidArgumentException::class, $e);
+            $this->assertInstanceOf(\Cs278\BankModulus\Exception\Exception::class, $e);
+            $this->assertNotInstanceOf(\Cs278\BankModulus\Exception\AccountNumberInvalidException::class, $e);
 
             return;
         }

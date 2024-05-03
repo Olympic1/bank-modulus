@@ -11,7 +11,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
 
     public function testGetSortCode(): void
     {
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
         $sortCode = new SortCode('654321');
 
         $account
@@ -26,7 +26,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
 
     public function testGetAccountNumber(): void
     {
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
         $accountNumber = '11223344';
 
         $account
@@ -41,7 +41,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
 
     public function testIsValidated(): void
     {
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
 
         $result = new Result($account, true, true, self::now());
         $this->assertTrue($result->isValidated());
@@ -52,7 +52,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
 
     public function testIsValid(): void
     {
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
 
         $result = new Result($account, true, true, self::now());
         $this->assertTrue($result->isValid());
@@ -70,7 +70,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
     /** @dataProvider dataNonBooleans */
     public function testIsValidArgumentValidation($value): void
     {
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
 
         $result = new Result($account, false, null, self::now());
 
@@ -92,7 +92,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
     public function testGetValidated(): void
     {
         $expected = self::now();
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
         $result = new Result($account, true, false, $expected);
 
         $this->assertSame($expected, $result->getValidatedAt());
@@ -105,11 +105,11 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
     {
         error_clear_last();
 
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
         $result = new Result($account, true, false, null);
         $error = error_get_last();
 
-        $this->assertInstanceOf('Cs278\\BankModulus\\Result', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\Result::class, $result);
         $this->assertArrayContains([
             'message' => '$validatedAt will become a required argument of Cs278\\BankModulus\\Result::__construct() in version 2.0.0.',
             'type' => \E_USER_DEPRECATED,
@@ -120,7 +120,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
 
     public function testConstructorWithInvalidValidatedAt(): void
     {
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
 
         try {
             new Result($account, false, null, new \stdClass());
@@ -141,12 +141,12 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
     {
         error_clear_last();
 
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
         $result = new Result($account, false, null, new \DateTime());
 
         $error = error_get_last();
 
-        $this->assertInstanceOf('Cs278\\BankModulus\\Result', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\Result::class, $result);
         $this->assertArrayContains([
             'message' => '$validatedAt argument of Cs278\BankModulus\Result::__construct() will require a DateTimeImmutable instance in version 2.0.0.',
             'type' => \E_USER_DEPRECATED,
@@ -156,7 +156,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
     /** @dataProvider dataNonBooleans */
     public function testConstructorSpecKnownValidation($value): void
     {
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
 
         try {
             new Result($account, $value, true, self::now());
@@ -176,7 +176,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
     /** @dataProvider dataNonBooleans */
     public function testConstructorSpecResultValidationWithSpecKnown($value): void
     {
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
 
         try {
             new Result($account, true, $value, self::now());
@@ -196,7 +196,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
     /** @dataProvider dataNonNulls */
     public function testConstructorSpecResultValidationWithSpecUnnown($value): void
     {
-        $account = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountInterface');
+        $account = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountInterface::class);
 
         try {
             new Result($account, false, $value, self::now());
@@ -242,8 +242,8 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
 
     private function assertInvalidArgumentException($expectedMessage, $e): void
     {
-        $this->assertInstanceOf('Cs278\BankModulus\Exception\Exception', $e);
-        $this->assertInstanceOf('Cs278\BankModulus\Exception\InvalidArgumentException', $e);
+        $this->assertInstanceOf(\Cs278\BankModulus\Exception\Exception::class, $e);
+        $this->assertInstanceOf(\Cs278\BankModulus\Exception\InvalidArgumentException::class, $e);
         $this->assertInstanceOf('InvalidArgumentException', $e);
         $this->assertStringMatchesFormat($expectedMessage, $e->getMessage());
     }

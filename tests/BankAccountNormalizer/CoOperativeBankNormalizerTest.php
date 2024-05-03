@@ -27,7 +27,7 @@ final class CoOperativeBankNormalizerTest extends \PHPUnit\Framework\TestCase
 
         $result = $normalizer->normalize($bankAccount);
 
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
         $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
         $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());

@@ -16,13 +16,13 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
             new SortCode($value);
         } catch (\Exception $e) {
             $this->assertInstanceOf('InvalidArgumentException', $e);
-            $this->assertInstanceOf('Cs278\BankModulus\Exception\InvalidArgumentException', $e);
-            $this->assertInstanceOf('Cs278\BankModulus\Exception\Exception', $e);
+            $this->assertInstanceOf(\Cs278\BankModulus\Exception\InvalidArgumentException::class, $e);
+            $this->assertInstanceOf(\Cs278\BankModulus\Exception\Exception::class, $e);
 
             if (\is_string($value)) {
-                $this->assertInstanceOf('Cs278\BankModulus\Exception\SortCodeInvalidException', $e);
+                $this->assertInstanceOf(\Cs278\BankModulus\Exception\SortCodeInvalidException::class, $e);
             } else {
-                $this->assertNotInstanceOf('Cs278\BankModulus\Exception\SortCodeInvalidException', $e);
+                $this->assertNotInstanceOf(\Cs278\BankModulus\Exception\SortCodeInvalidException::class, $e);
             }
 
             return;
@@ -45,9 +45,9 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
             SortCode::create($value);
         } catch (\Exception $e) {
             $this->assertInstanceOf('InvalidArgumentException', $e);
-            $this->assertInstanceOf('Cs278\BankModulus\Exception\InvalidArgumentException', $e);
-            $this->assertInstanceOf('Cs278\BankModulus\Exception\Exception', $e);
-            $this->assertNotInstanceOf('Cs278\BankModulus\Exception\SortCodeInvalidException', $e);
+            $this->assertInstanceOf(\Cs278\BankModulus\Exception\InvalidArgumentException::class, $e);
+            $this->assertInstanceOf(\Cs278\BankModulus\Exception\Exception::class, $e);
+            $this->assertNotInstanceOf(\Cs278\BankModulus\Exception\SortCodeInvalidException::class, $e);
 
             return;
         }

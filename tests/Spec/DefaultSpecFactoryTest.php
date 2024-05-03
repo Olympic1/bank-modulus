@@ -18,7 +18,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
 
         $spec = $factory->create();
 
-        $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\SpecInterface', $spec);
+        $this->assertInstanceOf(\Cs278\BankModulus\Spec\SpecInterface::class, $spec);
     }
 
     /**
@@ -42,7 +42,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         for ($i = 0; $i < 5; ++$i) {
             $spec = $factory->create();
 
-            $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\SpecInterface', $spec);
+            $this->assertInstanceOf(\Cs278\BankModulus\Spec\SpecInterface::class, $spec);
             $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\'.$expectedSpec, $spec);
         }
     }
@@ -59,7 +59,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         for ($i = 0; $i < 5; ++$i) {
             $spec = $factory->create();
 
-            $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\SpecInterface', $spec);
+            $this->assertInstanceOf(\Cs278\BankModulus\Spec\SpecInterface::class, $spec);
             $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\'.$expectedSpec, $spec);
         }
     }
@@ -134,7 +134,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $newFactory = $factory->withDate(new \DateTime('2018-01-01'));
 
         $this->assertNotSame($factory, $newFactory);
-        $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
+        $this->assertInstanceOf(\Cs278\BankModulus\Spec\VocaLinkV460::class, $newFactory->create());
     }
 
     public function testWithDateDateTimeImmutable(): void
@@ -143,7 +143,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $newFactory = $factory->withDate(new \DateTimeImmutable('2018-01-01'));
 
         $this->assertNotSame($factory, $newFactory);
-        $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
+        $this->assertInstanceOf(\Cs278\BankModulus\Spec\VocaLinkV460::class, $newFactory->create());
     }
 
     public function testWithDateObjectInvalid(): void
@@ -162,7 +162,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $newFactory = $factory->withDate('2018-01-01');
 
         $this->assertNotSame($factory, $newFactory);
-        $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
+        $this->assertInstanceOf(\Cs278\BankModulus\Spec\VocaLinkV460::class, $newFactory->create());
     }
 
     /**

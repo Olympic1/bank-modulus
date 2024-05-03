@@ -18,13 +18,13 @@ final class BankAccountNormalizedTest extends \PHPUnit\Framework\TestCase
             );
         } catch (\Exception $e) {
             $this->assertInstanceOf('InvalidArgumentException', $e);
-            $this->assertInstanceOf('Cs278\BankModulus\Exception\InvalidArgumentException', $e);
-            $this->assertInstanceOf('Cs278\BankModulus\Exception\Exception', $e);
+            $this->assertInstanceOf(\Cs278\BankModulus\Exception\InvalidArgumentException::class, $e);
+            $this->assertInstanceOf(\Cs278\BankModulus\Exception\Exception::class, $e);
 
             if (\is_string($accountNumber)) {
-                $this->assertInstanceOf('Cs278\BankModulus\Exception\AccountNumberInvalidException', $e);
+                $this->assertInstanceOf(\Cs278\BankModulus\Exception\AccountNumberInvalidException::class, $e);
             } else {
-                $this->assertNotInstanceOf('Cs278\BankModulus\Exception\AccountNumberInvalidException', $e);
+                $this->assertNotInstanceOf(\Cs278\BankModulus\Exception\AccountNumberInvalidException::class, $e);
             }
 
             return;
