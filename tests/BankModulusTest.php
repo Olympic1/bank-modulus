@@ -18,9 +18,6 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf('Cs278\\BankModulus\\BankModulus', $modulus);
     }
 
-    /**
-     * @requires PHPUnit 6
-     */
     public function testConstructorInvalidSpec()
     {
         $this->expectException(
@@ -40,7 +37,6 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests the backwards compatability layer in the constructor.
      *
-     * @requires function error_clear_last
      * @group legacy
      */
     public function testConstructorConcreteSpec()

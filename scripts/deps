@@ -38,20 +38,6 @@ main() {
         COMPOSER_ARGS="${COMPOSER_ARGS} --prefer-lowest --prefer-stable"
     fi
 
-    if [ "$WITH_PHP" = "7.4" ]; then
-        # PHP 7.4+ needs this fix: https://github.com/sebastianbergmann/phpunit/commit/e11397fed729bfef7a9c76f7b193c27ad5710f6b
-        modify_composerjson '.conflict["phpunit/phpunit"] = "< 7.5.15 || >= 8 < 8.3.0"'
-    fi
-
-    if [ "$WITH_PHP" = "8.1" ] || [ "$WITH_PHP" = "8.2" ] || [ "$WITH_PHP" = "8.3" ] || [ "$WITH_PHP" = "8.4" ] || [ "$WITH_PHP" = "8.5" ]; then
-        # PHP 8.1 needs this fix: https://github.com/sebastianbergmann/phpunit/commit/83491f4d19d18c868829a013f0ee0839dd53c684
-        modify_composerjson '.conflict["phpunit/phpunit"] = ">= 8 < 8.5.14"'
-    fi
-
-    if [ "$WITH_PHP" = "8.2" ] || [ "$WITH_PHP" = "8.3" ] || [ "$WITH_PHP" = "8.4" ] || [ "$WITH_PHP" = "8.5" ]; then
-        modify_composerjson '.conflict["webmozart/assert"] = "< 1.11.0"'
-    fi
-
     composer update $COMPOSER_ARGS
 
     # Undo modifications to composer.json

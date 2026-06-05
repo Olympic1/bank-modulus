@@ -37,7 +37,7 @@ final class Result implements BankAccountInterface
     {
         // Trigger warning about mutable DateTime's for minimum supported PHP version
         // of the v2 library.
-        if (\PHP_VERSION_ID >= 70100 && $validatedAt instanceof \DateTime) {
+        if ($validatedAt instanceof \DateTime) {
             @trigger_error(sprintf(
                 '$validatedAt argument of %s() will require a DateTimeImmutable instance in version 2.0.0.',
                 __METHOD__

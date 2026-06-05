@@ -23,7 +23,6 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider dataCreateAtDate
-     * @requires function error_clear_last
      */
     public function testCreateAtDateDeprecated($expectedSpec, \DateTime $now)
     {
@@ -138,9 +137,6 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
     }
 
-    /**
-     * @requires PHP 5.5.0
-     */
     public function testWithDateDateTimeImmutable()
     {
         $factory = new DefaultSpecFactory();
@@ -150,9 +146,6 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
     }
 
-    /**
-     * @requires PHP 5.5
-     */
     public function testWithDateObjectInvalid()
     {
         $factory = new DefaultSpecFactory();
@@ -160,20 +153,6 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected an instance of DateTimeInterface. Got: stdClass');
 
-        $factory->withDate(new \stdClass());
-    }
-
-    /**
-     * @expectedException \Cs278\BankModulus\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Expected an instance of DateTime. Got: stdClass
-     */
-    public function testWithDateObjectInvalidPhp54()
-    {
-        if (\PHP_VERSION_ID >= 50500) {
-            $this->markTestSkipped('Test requires PHP < 5.5');
-        }
-
-        $factory = new DefaultSpecFactory();
         $factory->withDate(new \stdClass());
     }
 

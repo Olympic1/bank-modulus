@@ -99,7 +99,6 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @requires function error_clear_last
      * @group legacy
      */
     public function testConstructorWithoutValidatedAt()
@@ -138,10 +137,6 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
         $this->fail('Failed to catch exception');
     }
 
-    /**
-     * @requires function error_clear_last
-     * @requires PHP 7.1.0
-     */
     public function testConstructorWithDeprecatedValidatedAt()
     {
         error_clear_last();
