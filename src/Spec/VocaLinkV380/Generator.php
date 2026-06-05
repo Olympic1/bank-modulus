@@ -27,8 +27,8 @@ final class Generator
      */
     public function __construct($input, $output, $spec)
     {
-        $this->input = \is_resource($input) ? $input : self::mustOpen($input, 'r');
-        $this->output = \is_resource($output) ? $output : self::mustOpen($output, 'x');
+        $this->input = !\is_string($input) ? $input : self::mustOpen($input, 'r');
+        $this->output = !\is_string($output) ? $output : self::mustOpen($output, 'x');
         $this->spec = $spec;
     }
 
