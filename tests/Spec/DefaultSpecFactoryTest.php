@@ -64,7 +64,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function dataCreateAtDate()
+    public static function dataCreateAtDate(): iterable
     {
         return [
             ['VocaLinkV390', new \DateTime('2010-04-12')],
@@ -178,7 +178,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $factory->withDate($input);
     }
 
-    public function dataWithDateStringInvalid()
+    public static function dataWithDateStringInvalid(): iterable
     {
         return [
             [''],

@@ -46,7 +46,7 @@ final class BankAccountTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('12345678', $account->getAccountNumber());
     }
 
-    public function dataWithInvalidAccountNumber()
+    public static function dataWithInvalidAccountNumber(): iterable
     {
         return [
             [true],

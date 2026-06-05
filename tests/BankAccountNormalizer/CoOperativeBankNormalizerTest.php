@@ -33,7 +33,7 @@ final class CoOperativeBankNormalizerTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
     }
 
-    public function dataNormalize()
+    public static function dataNormalize(): iterable
     {
         return [
             ['081245', '12345678', new BankAccount('081245', '1234567890')],
@@ -41,7 +41,7 @@ final class CoOperativeBankNormalizerTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function dataSupports()
+    public static function dataSupports(): iterable
     {
         return [
             // Test limits of range (ex. 08-3*-**)

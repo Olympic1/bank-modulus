@@ -15,7 +15,7 @@ final class UtilTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, Util::maskAccountNumber($string));
     }
 
-    public function dataMaskAccountNumber()
+    public static function dataMaskAccountNumber(): iterable
     {
         return [
             ['1******8', '12345678'],
@@ -30,7 +30,7 @@ final class UtilTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, Util::maskString($string, $length));
     }
 
-    public function dataMaskString()
+    public static function dataMaskString(): iterable
     {
         return [
             ['', '', 0],

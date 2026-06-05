@@ -101,7 +101,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($normalizer->supports($bankAccount));
     }
 
-    public function dataNormalize()
+    public static function dataNormalize(): iterable
     {
         return [
             // Co-op Bank

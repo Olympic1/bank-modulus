@@ -33,7 +33,7 @@ final class SantanderNormalizerTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
     }
 
-    public function dataNormalize()
+    public static function dataNormalize(): iterable
     {
         return [
             ['091231', '23456789', new BankAccount('091234', '123456789')],
@@ -42,7 +42,7 @@ final class SantanderNormalizerTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function dataSupports()
+    public static function dataSupports(): iterable
     {
         return [
             // 09-[01]*-** (London clearing)

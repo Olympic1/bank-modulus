@@ -27,7 +27,7 @@ final class VocaLinkV640Test extends \PHPUnit\Framework\TestCase
         $this->assertTrue($checker->check($bankAccount), $description);
     }
 
-    public function dataCheckValid()
+    public static function dataCheckValid(): iterable
     {
         return array_map(function ($fixture) {
             return [
@@ -35,7 +35,7 @@ final class VocaLinkV640Test extends \PHPUnit\Framework\TestCase
                 $fixture[3],
                 $fixture[0],
             ];
-        }, array_filter($this->parseFixtures(), function (array $fixture) {
+        }, array_filter(self::parseFixtures(), function (array $fixture) {
             return $fixture[1];
         }));
     }
@@ -54,7 +54,7 @@ final class VocaLinkV640Test extends \PHPUnit\Framework\TestCase
         $this->assertFalse($checker->check($bankAccount), $description);
     }
 
-    public function dataCheckInvalid()
+    public static function dataCheckInvalid(): iterable
     {
         return array_map(function ($fixture) {
             return [
@@ -62,7 +62,7 @@ final class VocaLinkV640Test extends \PHPUnit\Framework\TestCase
                 $fixture[3],
                 $fixture[0],
             ];
-        }, array_filter($this->parseFixtures(), function (array $fixture) {
+        }, array_filter(self::parseFixtures(), function (array $fixture) {
             return !$fixture[1];
         }));
     }
@@ -81,7 +81,7 @@ final class VocaLinkV640Test extends \PHPUnit\Framework\TestCase
         $checker->check($bankAccount);
     }
 
-    private function parseFixtures()
+    private static function parseFixtures(): array
     {
         $contents = file(__DIR__.'/'.basename(__FILE__, 'Test.php').'.fixtures.txt');
         $fixtures = [];

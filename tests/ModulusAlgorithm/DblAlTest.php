@@ -32,7 +32,7 @@ final class DblAlTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($quotient, $modulus->quotient());
     }
 
-    public function data()
+    public static function data(): iterable
     {
         return [
             [true, 0, 7, function () {

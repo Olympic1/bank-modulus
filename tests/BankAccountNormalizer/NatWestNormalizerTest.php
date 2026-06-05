@@ -33,7 +33,7 @@ final class NatWestNormalizerTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
     }
 
-    public function dataNormalize()
+    public static function dataNormalize(): iterable
     {
         return [
             ['600000', '23456789', new BankAccount('600000', '01-23456789')],
@@ -41,7 +41,7 @@ final class NatWestNormalizerTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function dataSupports()
+    public static function dataSupports(): iterable
     {
         return [
             // 01-**-** ex. District Bank
