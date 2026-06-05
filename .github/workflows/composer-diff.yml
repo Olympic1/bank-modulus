@@ -31,6 +31,9 @@ jobs:
           path: composer.json
       - uses: cs278/composer-rich-diff-action@94886e953383a617345020399027b129124ce342 # v1.3.0
         with:
+          path: vendor-bin/bc-check/composer.json
+      - uses: cs278/composer-rich-diff-action@94886e953383a617345020399027b129124ce342 # v1.3.0
+        with:
           path: vendor-bin/cs/composer.json
       - uses: cs278/composer-rich-diff-action@94886e953383a617345020399027b129124ce342 # v1.3.0
         with:
