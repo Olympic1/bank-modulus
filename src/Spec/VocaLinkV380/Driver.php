@@ -20,24 +20,24 @@ use Cs278\BankModulus\Spec\SpecInterface;
  */
 final class Driver implements SpecInterface
 {
-    const U = 0;
-    const V = 1;
-    const W = 2;
-    const X = 3;
-    const Y = 4;
-    const Z = 5;
-    const A = 6;
-    const B = 7;
-    const C = 8;
-    const D = 9;
-    const E = 10;
-    const F = 11;
-    const G = 12;
-    const H = 13;
+    private const U = 0;
+    private const V = 1;
+    private const W = 2;
+    private const X = 3;
+    private const Y = 4;
+    private const Z = 5;
+    private const A = 6;
+    private const B = 7;
+    private const C = 8;
+    private const D = 9;
+    private const E = 10;
+    private const F = 11;
+    private const G = 12;
+    private const H = 13;
 
-    const MOD10 = 'MOD10';
-    const MOD11 = 'MOD11';
-    const DBLAL = 'DBLAL';
+    private const MOD10 = 'MOD10';
+    private const MOD11 = 'MOD11';
+    private const DBLAL = 'DBLAL';
 
     /** @var DataInterface */
     private $data;
