@@ -120,7 +120,8 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
             ['VocaLinkV750', new \DateTime('2023-08-03')],
             ['VocaLinkV750', new \DateTime('2024-04-26')],
             ['VocaLinkV770', new \DateTime('2024-04-27')],
-            ['VocaLinkV770', new \DateTime('2030-01-01')],
+            ['VocaLinkV790', new \DateTime('2024-08-17')],
+            ['VocaLinkV790', new \DateTime('2030-01-01')],
         ];
     }
 
