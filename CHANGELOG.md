@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Fixed
+- Resolved deprecation notices when using PHP ≥ 8.4.
+
 ### Removed
 - PHP < 8.1 support was removed.
 

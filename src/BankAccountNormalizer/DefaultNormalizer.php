@@ -14,7 +14,7 @@ final class DefaultNormalizer implements NormalizerInterface
     /**
      * @param NormalizerInterface[]|null $normalizers
      */
-    public function __construct(array $normalizers = null)
+    public function __construct(?array $normalizers = null)
     {
         if (null === $normalizers) {
             $normalizers = [

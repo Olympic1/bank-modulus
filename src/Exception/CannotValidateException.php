@@ -10,7 +10,7 @@ final class CannotValidateException extends \RuntimeException implements Excepti
     /**
      * @return self
      */
-    public static function createFromBankAccount(BankAccountInterface $bankAccount, \Exception $e = null)
+    public static function createFromBankAccount(BankAccountInterface $bankAccount, ?\Exception $e = null)
     {
         if ($bankAccount instanceof BankAccountNormalized) {
             $bankAccount = $bankAccount->getOriginalBankAccount();
