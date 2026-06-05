@@ -27,8 +27,8 @@ final class Generator
      */
     public function __construct($input, $output, $spec)
     {
-        $this->input = \is_resource($input) ? $input : self::mustOpen($input, 'r');
-        $this->output = \is_resource($output) ? $output : self::mustOpen($output, 'x');
+        $this->input = !\is_string($input) ? $input : self::mustOpen($input, 'r');
+        $this->output = !\is_string($output) ? $output : self::mustOpen($output, 'x');
         $this->spec = $spec;
     }
 
@@ -345,7 +345,9 @@ final class Generator
 
 // Violation of PSR1/2 but it's a dev file so sue me.
 // @codeCoverageIgnoreStart
+// @phpstan-ignore argument.type (Dev file)
 if ('cli' === \PHP_SAPI && isset($_SERVER['PHP_SELF']) && __FILE__ === realpath($_SERVER['PHP_SELF'])) {
+    \assert(isset($argv));
     array_shift($argv); // discard
 
     $optimise = false;
@@ -360,7 +362,7 @@ if ('cli' === \PHP_SAPI && isset($_SERVER['PHP_SELF']) && __FILE__ === realpath(
         }
     }
 
-    \assert(isset($spec));
+    \assert(isset($spec) && \is_string($spec));
 
     (new Generator(\STDIN, \STDOUT, $spec))
         ->generate($optimise);

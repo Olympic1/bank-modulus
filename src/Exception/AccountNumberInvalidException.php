@@ -9,7 +9,7 @@ final class AccountNumberInvalidException extends InvalidArgumentException
      *
      * @return self
      */
-    public static function create($accountNumber, \Exception $e = null)
+    public static function create($accountNumber, ?\Exception $e = null)
     {
         return new self(sprintf(
             '`%s` is not a valid account number',

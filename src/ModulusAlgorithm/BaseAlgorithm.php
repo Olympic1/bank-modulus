@@ -61,7 +61,7 @@ abstract class BaseAlgorithm implements AlgorithmInterface
     {
         $chars = str_split($input, 1);
 
-        \assert($chars !== false);
+        \assert($chars !== false); // @phpstan-ignore function.alreadyNarrowedType, notIdentical.alwaysTrue (Belt/braces)
 
         return $chars;
     }

@@ -9,7 +9,7 @@ final class SortCodeInvalidException extends InvalidArgumentException
      *
      * @return self
      */
-    public static function create($sortCode, \Exception $e = null)
+    public static function create($sortCode, ?\Exception $e = null)
     {
         return new self(sprintf(
             '`%s` is not a valid sort code',

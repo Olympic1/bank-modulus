@@ -24,11 +24,9 @@ final class SortCode
             throw SortCodeInvalidException::create($value);
         }
 
-        // https://github.com/phpstan/phpstan/issues/2992
         $parts = str_split($value, 2);
-        \assert(isset($parts[0]) && \is_string($parts[0]));
-        \assert(isset($parts[1]) && \is_string($parts[1]));
-        \assert(isset($parts[2]) && \is_string($parts[2]));
+        \assert(\count($parts) === 3);
+
         $this->parts = $parts;
     }
 
