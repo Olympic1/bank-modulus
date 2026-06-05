@@ -36,7 +36,7 @@ final class SevenDigitNormalizerTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
     }
 
-    public function dataNormalize()
+    public static function dataNormalize(): iterable
     {
         return [
             ['01234567', '1234567'],
@@ -45,7 +45,7 @@ final class SevenDigitNormalizerTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function dataSupports()
+    public static function dataSupports(): iterable
     {
         return [
             // Check only allows 6 digit account numbers.

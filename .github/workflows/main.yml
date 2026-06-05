@@ -68,10 +68,10 @@ jobs:
 
           if [ "${{ matrix.coverage }}" = "1" ]; then
             sudo phpenmod xdebug
-            vendor/bin/phpunit --verbose $args --coverage-clover=coverage.xml
+            vendor/bin/phpunit $args --coverage-clover=coverage.xml
             sudo phpdismod xdebug
           else
-            vendor/bin/phpunit --verbose $args
+            vendor/bin/phpunit $args
           fi
       - name: PHPStan
         if: matrix.phpstan == 1

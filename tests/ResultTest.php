@@ -213,7 +213,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
         $this->fail('Failed to catch exception');
     }
 
-    public function dataNonBooleans()
+    public static function dataNonBooleans(): iterable
     {
         return [
             ['1'],
@@ -226,7 +226,7 @@ final class ResultTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function dataNonNulls()
+    public static function dataNonNulls(): iterable
     {
         return [
             ['1'],

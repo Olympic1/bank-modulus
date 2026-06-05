@@ -15,7 +15,7 @@ final class StringUtilTest extends \PHPUnit\Framework\TestCase
         self::assertSame($expected, StringUtil::removeNonDigits($input));
     }
 
-    public function dataRemoveNonDigits()
+    public static function dataRemoveNonDigits(): iterable
     {
         return [
             ['', ''],
@@ -36,7 +36,7 @@ final class StringUtilTest extends \PHPUnit\Framework\TestCase
         self::assertSame($expected, StringUtil::regexReplaceCallback($input, $regex, $callback));
     }
 
-    public function dataRegexReplaceCallback()
+    public static function dataRegexReplaceCallback(): iterable
     {
         return [
             ['fOO', 'foo', '{o}', function ($input) {

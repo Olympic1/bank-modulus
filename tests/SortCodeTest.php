@@ -135,7 +135,7 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
         $this->fail('Expected value was nonsense');
     }
 
-    public function dataInBetween()
+    public static function dataInBetween(): iterable
     {
         return [
             [true, '555555', '555556'],
@@ -144,7 +144,7 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function dataCompareTo()
+    public static function dataCompareTo(): iterable
     {
         return [
             [0,  new SortCode('123456'), new SortCode('123456')],
@@ -153,7 +153,7 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function dataConstructInvalid()
+    public static function dataConstructInvalid(): iterable
     {
         return [
             ['12345'],
@@ -169,7 +169,7 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function dataCreateInvalid()
+    public static function dataCreateInvalid(): iterable
     {
         return [
             [null],

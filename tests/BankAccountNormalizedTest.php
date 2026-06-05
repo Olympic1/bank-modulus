@@ -79,7 +79,7 @@ final class BankAccountNormalizedTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('14444125555552', $account->__toString());
     }
 
-    public function dataWithInvalidAccountNumber()
+    public static function dataWithInvalidAccountNumber(): iterable
     {
         return [
             [true],

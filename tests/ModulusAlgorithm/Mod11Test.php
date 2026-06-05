@@ -32,7 +32,7 @@ final class Mod11Test extends \PHPUnit\Framework\TestCase
         $this->assertSame($quotient, $modulus->quotient());
     }
 
-    public function data()
+    public static function data(): iterable
     {
         return [
             [true, 0, 16, function () {

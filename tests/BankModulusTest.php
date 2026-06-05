@@ -165,7 +165,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expectedAccountNumber, $accountNumber);
     }
 
-    public function dataNormalize()
+    public static function dataNormalize(): iterable
     {
         return [
             // Formatting
