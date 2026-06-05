@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## [v1.17.0] - 2026-06-05
 
 ### Fixed
 - Resolved deprecation notices when using PHP ≥ 8.4.
@@ -204,6 +204,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Implemented VocaLink V3.80 specification
 
+[v1.17.0]: https://github.com/cs278/bank-modulus/compare/v1.16.0...v1.17.0
+[v1.16.0]: https://github.com/cs278/bank-modulus/compare/v1.15.0...v1.16.0
 [v1.15.0]: https://github.com/cs278/bank-modulus/compare/v1.14.0...v1.15.0
 [v1.14.0]: https://github.com/cs278/bank-modulus/compare/v1.13.0...v1.14.0
 [v1.13.0]: https://github.com/cs278/bank-modulus/compare/v1.12.0...v1.13.0
