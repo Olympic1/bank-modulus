@@ -76,7 +76,10 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
     {
         $normalizer = new DefaultNormalizer();
         $prop = new \ReflectionProperty($normalizer, 'normalizers');
-        $prop->setAccessible(true);
+
+        if (\PHP_VERSION_ID < 80100) {
+            $prop->setAccessible(true);
+        }
 
         $normalizers = $prop->getValue($normalizer);
 
