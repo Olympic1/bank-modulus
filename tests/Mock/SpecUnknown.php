@@ -8,7 +8,7 @@ use Cs278\BankModulus\Spec\SpecInterface;
 
 final class SpecUnknown implements SpecInterface
 {
-    public function check(BankAccountNormalized $bankAccount)
+    public function check(BankAccountNormalized $bankAccount): void
     {
         throw CannotValidateException::createFromBankAccount($bankAccount);
     }

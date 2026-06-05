@@ -7,13 +7,13 @@ namespace Cs278\BankModulus\Exception;
  */
 final class AccountNumberInvalidExceptionTest extends \PHPUnit\Framework\TestCase
 {
-    public function testCreate()
+    public function testCreate(): void
     {
         $e = AccountNumberInvalidException::create('12345678', $e2 = new \Exception());
 
-        $this->assertInstanceOf('Cs278\BankModulus\Exception\AccountNumberInvalidException', $e);
-        $this->assertInstanceOf('Cs278\BankModulus\Exception\InvalidArgumentException', $e);
-        $this->assertInstanceOf('Cs278\BankModulus\Exception\Exception', $e);
+        $this->assertInstanceOf(\Cs278\BankModulus\Exception\AccountNumberInvalidException::class, $e);
+        $this->assertInstanceOf(\Cs278\BankModulus\Exception\InvalidArgumentException::class, $e);
+        $this->assertInstanceOf(\Cs278\BankModulus\Exception\Exception::class, $e);
         $this->assertInstanceOf('InvalidArgumentException', $e);
 
         $this->assertSame($e2, $e->getPrevious());

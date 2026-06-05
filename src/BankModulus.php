@@ -62,7 +62,7 @@ final class BankModulus
      *
      * @return void
      */
-    public function normalize(&$sortCode, &$accountNumber)
+    public function normalize(&$sortCode, &$accountNumber): void
     {
         Assert::string($sortCode, 'Sort code must be a string');
         Assert::string($accountNumber, 'Account number must be a string');

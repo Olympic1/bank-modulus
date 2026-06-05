@@ -12,7 +12,7 @@ final class Assert extends BaseAssert
      *
      * @return void
      */
-    protected static function reportInvalidArgument($message)
+    protected static function reportInvalidArgument($message): void
     {
         throw new InvalidArgumentException($message);
     }

@@ -7,13 +7,13 @@ namespace Cs278\BankModulus\Exception;
  */
 final class SortCodeInvalidExceptionTest extends \PHPUnit\Framework\TestCase
 {
-    public function testCreate()
+    public function testCreate(): void
     {
         $e = SortCodeInvalidException::create('123456', $e2 = new \Exception());
 
-        $this->assertInstanceOf('Cs278\BankModulus\Exception\SortCodeInvalidException', $e);
-        $this->assertInstanceOf('Cs278\BankModulus\Exception\InvalidArgumentException', $e);
-        $this->assertInstanceOf('Cs278\BankModulus\Exception\Exception', $e);
+        $this->assertInstanceOf(\Cs278\BankModulus\Exception\SortCodeInvalidException::class, $e);
+        $this->assertInstanceOf(\Cs278\BankModulus\Exception\InvalidArgumentException::class, $e);
+        $this->assertInstanceOf(\Cs278\BankModulus\Exception\Exception::class, $e);
         $this->assertInstanceOf('InvalidArgumentException', $e);
 
         $this->assertSame($e2, $e->getPrevious());

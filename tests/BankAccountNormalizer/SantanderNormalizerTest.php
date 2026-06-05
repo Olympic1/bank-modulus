@@ -10,7 +10,7 @@ use Cs278\BankModulus\BankAccount;
 final class SantanderNormalizerTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider dataSupports */
-    public function testSupports($expected, $bankAccount)
+    public function testSupports($expected, $bankAccount): void
     {
         $normalizer = new SantanderNormalizer();
 
@@ -18,7 +18,7 @@ final class SantanderNormalizerTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataNormalize */
-    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount)
+    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount): void
     {
         $normalizer = new SantanderNormalizer();
 
@@ -27,7 +27,7 @@ final class SantanderNormalizerTest extends \PHPUnit\Framework\TestCase
 
         $result = $normalizer->normalize($bankAccount);
 
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
         $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
         $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());

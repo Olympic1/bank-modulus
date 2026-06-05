@@ -12,20 +12,19 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
 {
     use AssertArrayContainsTrait;
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $factory = new DefaultSpecFactory();
 
         $spec = $factory->create();
 
-        $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\SpecInterface', $spec);
+        $this->assertInstanceOf(\Cs278\BankModulus\Spec\SpecInterface::class, $spec);
     }
 
     /**
      * @dataProvider dataCreateAtDate
-     * @requires function error_clear_last
      */
-    public function testCreateAtDateDeprecated($expectedSpec, \DateTime $now)
+    public function testCreateAtDateDeprecated($expectedSpec, \DateTime $now): void
     {
         error_clear_last();
 
@@ -43,7 +42,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         for ($i = 0; $i < 5; ++$i) {
             $spec = $factory->create();
 
-            $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\SpecInterface', $spec);
+            $this->assertInstanceOf(\Cs278\BankModulus\Spec\SpecInterface::class, $spec);
             $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\'.$expectedSpec, $spec);
         }
     }
@@ -51,7 +50,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider dataCreateAtDate
      */
-    public function testCreateAtDate($expectedSpec, \DateTime $now)
+    public function testCreateAtDate($expectedSpec, \DateTime $now): void
     {
         $factory = new DefaultSpecFactory();
         $factory = $factory->withDate($now);
@@ -60,7 +59,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         for ($i = 0; $i < 5; ++$i) {
             $spec = $factory->create();
 
-            $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\SpecInterface', $spec);
+            $this->assertInstanceOf(\Cs278\BankModulus\Spec\SpecInterface::class, $spec);
             $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\'.$expectedSpec, $spec);
         }
     }
@@ -129,31 +128,25 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function testWithDateDateTime()
+    public function testWithDateDateTime(): void
     {
         $factory = new DefaultSpecFactory();
         $newFactory = $factory->withDate(new \DateTime('2018-01-01'));
 
         $this->assertNotSame($factory, $newFactory);
-        $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
+        $this->assertInstanceOf(\Cs278\BankModulus\Spec\VocaLinkV460::class, $newFactory->create());
     }
 
-    /**
-     * @requires PHP 5.5.0
-     */
-    public function testWithDateDateTimeImmutable()
+    public function testWithDateDateTimeImmutable(): void
     {
         $factory = new DefaultSpecFactory();
         $newFactory = $factory->withDate(new \DateTimeImmutable('2018-01-01'));
 
         $this->assertNotSame($factory, $newFactory);
-        $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
+        $this->assertInstanceOf(\Cs278\BankModulus\Spec\VocaLinkV460::class, $newFactory->create());
     }
 
-    /**
-     * @requires PHP 5.5
-     */
-    public function testWithDateObjectInvalid()
+    public function testWithDateObjectInvalid(): void
     {
         $factory = new DefaultSpecFactory();
 
@@ -163,33 +156,19 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $factory->withDate(new \stdClass());
     }
 
-    /**
-     * @expectedException \Cs278\BankModulus\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Expected an instance of DateTime. Got: stdClass
-     */
-    public function testWithDateObjectInvalidPhp54()
-    {
-        if (\PHP_VERSION_ID >= 50500) {
-            $this->markTestSkipped('Test requires PHP < 5.5');
-        }
-
-        $factory = new DefaultSpecFactory();
-        $factory->withDate(new \stdClass());
-    }
-
-    public function testWithDateString()
+    public function testWithDateString(): void
     {
         $factory = new DefaultSpecFactory();
         $newFactory = $factory->withDate('2018-01-01');
 
         $this->assertNotSame($factory, $newFactory);
-        $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
+        $this->assertInstanceOf(\Cs278\BankModulus\Spec\VocaLinkV460::class, $newFactory->create());
     }
 
     /**
      * @dataProvider dataWithDateStringInvalid
      */
-    public function testWithDateStringInvalid($input)
+    public function testWithDateStringInvalid($input): void
     {
         $factory = new DefaultSpecFactory();
 

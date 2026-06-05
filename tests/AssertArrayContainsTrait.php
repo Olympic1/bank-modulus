@@ -9,7 +9,7 @@ trait AssertArrayContainsTrait
     /**
      * @return void
      */
-    public static function assertArrayContains(array $expected, array $actual)
+    public static function assertArrayContains(array $expected, array $actual): void
     {
         foreach ($expected as $key => $value) {
             TestCase::assertArrayHasKey($key, $actual);

@@ -8,7 +8,7 @@ use Cs278\BankModulus\Internal\Assert;
 
 final class SortCode
 {
-    const LENGTH = 6;
+    public const LENGTH = 6;
 
     /** @var array{string,string,string} */
     private $parts;

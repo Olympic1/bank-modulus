@@ -10,7 +10,7 @@ use Cs278\BankModulus\SortCode;
 final class UtilTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider dataMaskAccountNumber */
-    public function testMaskAccountNumber($expected, $string)
+    public function testMaskAccountNumber($expected, $string): void
     {
         $this->assertSame($expected, Util::maskAccountNumber($string));
     }
@@ -25,7 +25,7 @@ final class UtilTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataMaskString */
-    public function testMaskString($expected, $string, $length)
+    public function testMaskString($expected, $string, $length): void
     {
         $this->assertSame($expected, Util::maskString($string, $length));
     }
@@ -42,7 +42,7 @@ final class UtilTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function testMaskSortCode()
+    public function testMaskSortCode(): void
     {
         $this->assertSame('11-**-33', Util::maskSortCode(new SortCode('112233')));
     }

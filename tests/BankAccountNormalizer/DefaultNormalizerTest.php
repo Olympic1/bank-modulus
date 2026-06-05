@@ -10,13 +10,13 @@ use Cs278\BankModulus\BankAccountNormalized;
  */
 final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
 {
-    public function testPassingInNormalizers()
+    public function testPassingInNormalizers(): void
     {
         $bankAccount = new BankAccount('08-32-16', '12345678');
         $expectedSortCode = '166432';
         $expectedAccountNumber = '01234567';
 
-        $mock = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountNormalizer\NormalizerInterface');
+        $mock = $this->getMockForAbstractClass(\Cs278\BankModulus\BankAccountNormalizer\NormalizerInterface::class);
 
         $mock
             ->expects($this->any())
@@ -36,13 +36,13 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
 
         $result = $normalizer->normalize($bankAccount);
 
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
         $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
         $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
     }
 
-    public function testEmptyNormalizers()
+    public function testEmptyNormalizers(): void
     {
         $expectedSortCode = '122448';
         $expectedAccountNumber = '11223344';
@@ -52,34 +52,30 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
 
         $result = $normalizer->normalize($bankAccount);
 
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
         $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
         $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
     }
 
     /** @dataProvider dataNormalize */
-    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount)
+    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount): void
     {
         $normalizer = new DefaultNormalizer();
 
         $result = $normalizer->normalize($bankAccount);
 
-        $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+        $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
         $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
         $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
     }
 
     /** @dataProvider dataNormalize */
-    public function testNormalizeMixup($expectedSortCode, $expectedAccountNumber, $bankAccount)
+    public function testNormalizeMixup($expectedSortCode, $expectedAccountNumber, $bankAccount): void
     {
         $normalizer = new DefaultNormalizer();
         $prop = new \ReflectionProperty($normalizer, 'normalizers');
-
-        if (\PHP_VERSION_ID < 80100) {
-            $prop->setAccessible(true);
-        }
 
         $normalizers = $prop->getValue($normalizer);
 
@@ -90,7 +86,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
 
             $result = $normalizer->normalize($bankAccount);
 
-            $this->assertInstanceOf('Cs278\BankModulus\BankAccountInterface', $result);
+            $this->assertInstanceOf(\Cs278\BankModulus\BankAccountInterface::class, $result);
             $this->assertSame($expectedSortCode, $result->getSortCode()->format('%s%s%s'));
             $this->assertSame($expectedAccountNumber, $result->getAccountNumber());
             $this->assertSame($bankAccount, $result->getOriginalBankAccount());
@@ -98,7 +94,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataNormalize */
-    public function testSupports($expectedSortCode, $expectedAccountNumber, $bankAccount)
+    public function testSupports($expectedSortCode, $expectedAccountNumber, $bankAccount): void
     {
         $normalizer = new DefaultNormalizer();
 

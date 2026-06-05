@@ -16,7 +16,7 @@ final class VocaLinkV440Test extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider dataCheckValid
      */
-    public function testCheckValid($sortCode, $accountNumber, $description)
+    public function testCheckValid($sortCode, $accountNumber, $description): void
     {
         $checker = new VocaLinkV440();
         $normalizer = new DefaultNormalizer();
@@ -43,7 +43,7 @@ final class VocaLinkV440Test extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider dataCheckInvalid
      */
-    public function testCheckInvalid($sortCode, $accountNumber, $description)
+    public function testCheckInvalid($sortCode, $accountNumber, $description): void
     {
         $checker = new VocaLinkV440();
         $normalizer = new DefaultNormalizer();
@@ -67,7 +67,7 @@ final class VocaLinkV440Test extends \PHPUnit\Framework\TestCase
         }));
     }
 
-    public function testUnknownDetails()
+    public function testUnknownDetails(): void
     {
         $checker = new VocaLinkV440();
         $normalizer = new DefaultNormalizer();

@@ -3,6 +3,10 @@ parameters:
     - src
   level: max
   treatPhpDocTypesAsCertain: false
+  ignoreErrors:
+    # Constants are present for completeness even if they are not used.
+    - message: '/^Constant Cs278\\BankModulus\\Spec\\VocaLinkV380\\Driver::. is unused\./'
+      path: src/Spec/VocaLinkV380/Driver.php
   excludePaths:
     - src/Spec/VocaLinkV380/DataV380.php
     - src/Spec/VocaLinkV380/DataV390.php
