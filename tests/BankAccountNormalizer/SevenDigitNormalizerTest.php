@@ -10,7 +10,7 @@ use Cs278\BankModulus\BankAccount;
 final class SevenDigitNormalizerTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider dataSupports */
-    public function testSupports($expected, $accountNumber)
+    public function testSupports($expected, $accountNumber): void
     {
         $normalizer = new SevenDigitNormalizer();
         $bankAccount = new BankAccount('012345', $accountNumber);
@@ -19,7 +19,7 @@ final class SevenDigitNormalizerTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataNormalize */
-    public function testNormalize($expectedAccountNumber, $accountNumber)
+    public function testNormalize($expectedAccountNumber, $accountNumber): void
     {
         $normalizer = new SevenDigitNormalizer();
         $sortCode = '129921';

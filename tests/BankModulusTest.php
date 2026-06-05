@@ -11,14 +11,14 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
 {
     use AssertArrayContainsTrait;
 
-    public function testConstructorNoArgs()
+    public function testConstructorNoArgs(): void
     {
         $modulus = new BankModulus();
 
         $this->assertInstanceOf('Cs278\\BankModulus\\BankModulus', $modulus);
     }
 
-    public function testConstructorInvalidSpec()
+    public function testConstructorInvalidSpec(): void
     {
         $this->expectException(
             'Cs278\\BankModulus\\Exception\\InvalidArgumentException'
@@ -39,7 +39,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
      *
      * @group legacy
      */
-    public function testConstructorConcreteSpec()
+    public function testConstructorConcreteSpec(): void
     {
         error_clear_last();
 
@@ -55,7 +55,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         error_clear_last();
     }
 
-    public function testCheckValid()
+    public function testCheckValid(): void
     {
         $spec = new Mock\SpecPass();
         $normalizer = new Mock\Normalizer();
@@ -64,7 +64,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($modulus->check('089999', '66374958'));
     }
 
-    public function testCheckInvalid()
+    public function testCheckInvalid(): void
     {
         $spec = new Mock\SpecFail();
         $normalizer = new Mock\Normalizer();
@@ -73,7 +73,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($modulus->check('089999', '66374959'));
     }
 
-    public function testCheckUnknown()
+    public function testCheckUnknown(): void
     {
         $spec = new Mock\SpecUnknown();
         $normalizer = new Mock\Normalizer();
@@ -82,7 +82,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($modulus->check('000000', '12345678'));
     }
 
-    public function testLookupValidatedAndValid()
+    public function testLookupValidatedAndValid(): void
     {
         $spec = new Mock\SpecPass();
         $normalizer = new Mock\NormalizerReverse();
@@ -100,7 +100,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($result->isValid());
     }
 
-    public function testLookupValidatedAndInvalid()
+    public function testLookupValidatedAndInvalid(): void
     {
         $spec = new Mock\SpecFail();
         $normalizer = new Mock\NormalizerReverse();
@@ -118,7 +118,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($result->isValid());
     }
 
-    public function testLookupNotValidated()
+    public function testLookupNotValidated(): void
     {
         $spec = new Mock\SpecUnknown();
         $normalizer = new Mock\NormalizerReverse();
@@ -136,7 +136,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($result->isValid());
     }
 
-    public function testLookupNoNormalizer()
+    public function testLookupNoNormalizer(): void
     {
         $spec = new Mock\SpecPass();
         $normalizer = new Mock\NormalizerUnsupported();
@@ -155,7 +155,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataNormalize */
-    public function testNormalize($expectedSortCode, $expectedAccountNumber, $sortCode, $accountNumber)
+    public function testNormalize($expectedSortCode, $expectedAccountNumber, $sortCode, $accountNumber): void
     {
         $modulus = new BankModulus();
 
@@ -193,7 +193,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function testNormalizeUnsupported()
+    public function testNormalizeUnsupported(): void
     {
         $spec = new Mock\SpecPass();
         $normalizer = new Mock\NormalizerUnsupported();
@@ -212,7 +212,7 @@ final class BankModulusTest extends \PHPUnit\Framework\TestCase
     /**
      * Test lookup(), check(), and normalize() method argument validation.
      */
-    public function testMethodInputValidation()
+    public function testMethodInputValidation(): void
     {
         $spec = $this->getMockForAbstractClass('Cs278\BankModulus\Spec\SpecInterface');
         $normalizer = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountNormalizer\NormalizerInterface');

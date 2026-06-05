@@ -10,7 +10,7 @@ final class StringUtilTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider dataRemoveNonDigits
      */
-    public function testRemoveNonDigits($expected, $input)
+    public function testRemoveNonDigits($expected, $input): void
     {
         self::assertSame($expected, StringUtil::removeNonDigits($input));
     }
@@ -31,7 +31,7 @@ final class StringUtilTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider dataRegexReplaceCallback
      */
-    public function testRegexReplaceCallback($expected, $input, $regex, \Closure $callback)
+    public function testRegexReplaceCallback($expected, $input, $regex, \Closure $callback): void
     {
         self::assertSame($expected, StringUtil::regexReplaceCallback($input, $regex, $callback));
     }

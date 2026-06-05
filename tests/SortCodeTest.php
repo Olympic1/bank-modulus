@@ -10,7 +10,7 @@ use Cs278\BankModulus\Exception\InvalidArgumentException;
 final class SortCodeTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider dataConstructInvalid */
-    public function testConstructInvalid($value)
+    public function testConstructInvalid($value): void
     {
         try {
             new SortCode($value);
@@ -31,7 +31,7 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
         $this->fail('Failed to catch exception');
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $sortCode = SortCode::create('Sort code: 11-22-33. ');
 
@@ -39,7 +39,7 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataCreateInvalid */
-    public function testCreateInvalid($value)
+    public function testCreateInvalid($value): void
     {
         try {
             SortCode::create($value);
@@ -56,42 +56,42 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataInBetween */
-    public function testIsBetween($expected, $a, $b)
+    public function testIsBetween($expected, $a, $b): void
     {
         $sortCode = new SortCode('555555');
 
         $this->assertSame($expected, $sortCode->isBetween(new SortCode($a), new SortCode($b)));
     }
 
-    public function testFormat()
+    public function testFormat(): void
     {
         $sortCode = new SortCode('112233');
 
         $this->assertSame('11_22_33', $sortCode->format('%s_%s_%s'));
     }
 
-    public function testGetString()
+    public function testGetString(): void
     {
         $sortCode = new SortCode('112233');
 
         $this->assertSame('112233', $sortCode->getString());
     }
 
-    public function testGetDashSeparated()
+    public function testGetDashSeparated(): void
     {
         $sortCode = new SortCode('112233');
 
         $this->assertSame('11-22-33', $sortCode->getDashSeparated());
     }
 
-    public function testGetSpaceSeparated()
+    public function testGetSpaceSeparated(): void
     {
         $sortCode = new SortCode('112233');
 
         $this->assertSame('11 22 33', $sortCode->getSpaceSeparated());
     }
 
-    public function testFormatInvalud()
+    public function testFormatInvalud(): void
     {
         $sortCode = new SortCode('112233');
 
@@ -101,7 +101,7 @@ final class SortCodeTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataCompareTo */
-    public function testCompareTo($expected, $a, $b)
+    public function testCompareTo($expected, $a, $b): void
     {
         $this->assertSame($expected, $a->compareTo($b));
 

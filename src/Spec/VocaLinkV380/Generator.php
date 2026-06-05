@@ -37,7 +37,7 @@ final class Generator
      *
      * @return void
      */
-    public function generate($optimise)
+    public function generate($optimise): void
     {
         $this->emit('<'."?php\n");
         $this->emit(sprintf("namespace %s;\n", __NAMESPACE__));
@@ -68,7 +68,7 @@ final class Generator
     /**
      * @return void
      */
-    private function generateOptimised()
+    private function generateOptimised(): void
     {
         $seen = [];
         $uniqueWeights = [];
@@ -193,7 +193,7 @@ final class Generator
     /**
      * @return void
      */
-    private function generateSimple()
+    private function generateSimple(): void
     {
         $seen = [];
 
@@ -279,7 +279,7 @@ final class Generator
      *
      * @return void
      */
-    private function emit($code, $line = true)
+    private function emit($code, $line = true): void
     {
         if ($line && $this->indentLevel) {
             fwrite($this->output, str_repeat('    ', $this->indentLevel));
@@ -295,7 +295,7 @@ final class Generator
     /**
      * @return void
      */
-    private function nl()
+    private function nl(): void
     {
         fwrite($this->output, "\n");
     }
@@ -307,7 +307,7 @@ final class Generator
      *
      * @return void
      */
-    private function gobble($n)
+    private function gobble($n): void
     {
         fseek($this->output, ftell($this->output) - $n);
     }
@@ -315,7 +315,7 @@ final class Generator
     /**
      * @return void
      */
-    private function indent()
+    private function indent(): void
     {
         ++$this->indentLevel;
     }
@@ -323,7 +323,7 @@ final class Generator
     /**
      * @return void
      */
-    private function unindent()
+    private function unindent(): void
     {
         $this->indentLevel = max($this->indentLevel - 1, 0);
     }
@@ -351,7 +351,7 @@ if ('cli' === \PHP_SAPI && isset($_SERVER['PHP_SELF']) && __FILE__ === realpath(
     $optimise = false;
 
     while ($arg = array_shift($argv)) {
-        if (strpos($arg, '--') === 0) {
+        if (str_starts_with($arg, '--')) {
             if ($arg === '--optimise') {
                 $optimise = true;
             }

@@ -10,7 +10,7 @@ namespace Cs278\BankModulus;
  */
 final class BankModulusLegacyTest extends \PHPUnit\Framework\TestCase
 {
-    public function testCheckValid()
+    public function testCheckValid(): void
     {
         $spec = new Mock\SpecPass();
         $normalizer = new Mock\Normalizer();
@@ -19,7 +19,7 @@ final class BankModulusLegacyTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($modulus->check('089999', '66374958'));
     }
 
-    public function testCheckInvalid()
+    public function testCheckInvalid(): void
     {
         $spec = new Mock\SpecFail();
         $normalizer = new Mock\Normalizer();
@@ -28,7 +28,7 @@ final class BankModulusLegacyTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($modulus->check('089999', '66374959'));
     }
 
-    public function testCheckUnknown()
+    public function testCheckUnknown(): void
     {
         $spec = new Mock\SpecUnknown();
         $normalizer = new Mock\Normalizer();
@@ -37,7 +37,7 @@ final class BankModulusLegacyTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($modulus->check('000000', '12345678'));
     }
 
-    public function testLookupValidatedAndValid()
+    public function testLookupValidatedAndValid(): void
     {
         $spec = new Mock\SpecPass();
         $normalizer = new Mock\NormalizerReverse();
@@ -55,7 +55,7 @@ final class BankModulusLegacyTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($result->isValid());
     }
 
-    public function testLookupValidatedAndInvalid()
+    public function testLookupValidatedAndInvalid(): void
     {
         $spec = new Mock\SpecFail();
         $normalizer = new Mock\NormalizerReverse();
@@ -73,7 +73,7 @@ final class BankModulusLegacyTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($result->isValid());
     }
 
-    public function testLookupNotValidated()
+    public function testLookupNotValidated(): void
     {
         $spec = new Mock\SpecUnknown();
         $normalizer = new Mock\NormalizerReverse();
@@ -91,7 +91,7 @@ final class BankModulusLegacyTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($result->isValid());
     }
 
-    public function testLookupNoNormalizer()
+    public function testLookupNoNormalizer(): void
     {
         $spec = new Mock\SpecPass();
         $normalizer = new Mock\NormalizerUnsupported();
@@ -109,7 +109,7 @@ final class BankModulusLegacyTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($result->isValid());
     }
 
-    public function testNormalizeUnsupported()
+    public function testNormalizeUnsupported(): void
     {
         $spec = new Mock\SpecPass();
         $normalizer = new Mock\NormalizerUnsupported();
@@ -128,7 +128,7 @@ final class BankModulusLegacyTest extends \PHPUnit\Framework\TestCase
     /**
      * Test lookup(), check(), and normalize() method argument validation.
      */
-    public function testMethodInputValidation()
+    public function testMethodInputValidation(): void
     {
         $spec = $this->getMockForAbstractClass('Cs278\BankModulus\Spec\SpecInterface');
         $normalizer = $this->getMockForAbstractClass('Cs278\BankModulus\BankAccountNormalizer\NormalizerInterface');

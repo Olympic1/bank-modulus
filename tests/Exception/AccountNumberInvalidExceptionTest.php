@@ -7,7 +7,7 @@ namespace Cs278\BankModulus\Exception;
  */
 final class AccountNumberInvalidExceptionTest extends \PHPUnit\Framework\TestCase
 {
-    public function testCreate()
+    public function testCreate(): void
     {
         $e = AccountNumberInvalidException::create('12345678', $e2 = new \Exception());
 

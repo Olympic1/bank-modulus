@@ -16,7 +16,7 @@ final class BankAccountNormalized implements BankAccountInterface, BankAccountNo
     private $accountNumber;
 
     /** @deprecated Use BankAccountNormalizedInterface::ACCOUNT_NUMBER_LENGTH instead. */
-    const LENGTH = self::ACCOUNT_NUMBER_LENGTH;
+    public const LENGTH = self::ACCOUNT_NUMBER_LENGTH;
 
     /**
      * @param BankAccountInterface $bankAccount

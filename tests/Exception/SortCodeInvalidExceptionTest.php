@@ -7,7 +7,7 @@ namespace Cs278\BankModulus\Exception;
  */
 final class SortCodeInvalidExceptionTest extends \PHPUnit\Framework\TestCase
 {
-    public function testCreate()
+    public function testCreate(): void
     {
         $e = SortCodeInvalidException::create('123456', $e2 = new \Exception());
 

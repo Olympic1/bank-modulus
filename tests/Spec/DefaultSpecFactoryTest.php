@@ -12,7 +12,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
 {
     use AssertArrayContainsTrait;
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $factory = new DefaultSpecFactory();
 
@@ -24,7 +24,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider dataCreateAtDate
      */
-    public function testCreateAtDateDeprecated($expectedSpec, \DateTime $now)
+    public function testCreateAtDateDeprecated($expectedSpec, \DateTime $now): void
     {
         error_clear_last();
 
@@ -50,7 +50,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider dataCreateAtDate
      */
-    public function testCreateAtDate($expectedSpec, \DateTime $now)
+    public function testCreateAtDate($expectedSpec, \DateTime $now): void
     {
         $factory = new DefaultSpecFactory();
         $factory = $factory->withDate($now);
@@ -128,7 +128,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function testWithDateDateTime()
+    public function testWithDateDateTime(): void
     {
         $factory = new DefaultSpecFactory();
         $newFactory = $factory->withDate(new \DateTime('2018-01-01'));
@@ -137,7 +137,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
     }
 
-    public function testWithDateDateTimeImmutable()
+    public function testWithDateDateTimeImmutable(): void
     {
         $factory = new DefaultSpecFactory();
         $newFactory = $factory->withDate(new \DateTimeImmutable('2018-01-01'));
@@ -146,7 +146,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf('Cs278\\BankModulus\\Spec\\VocaLinkV460', $newFactory->create());
     }
 
-    public function testWithDateObjectInvalid()
+    public function testWithDateObjectInvalid(): void
     {
         $factory = new DefaultSpecFactory();
 
@@ -156,7 +156,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
         $factory->withDate(new \stdClass());
     }
 
-    public function testWithDateString()
+    public function testWithDateString(): void
     {
         $factory = new DefaultSpecFactory();
         $newFactory = $factory->withDate('2018-01-01');
@@ -168,7 +168,7 @@ final class DefaultSpecFactoryTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider dataWithDateStringInvalid
      */
-    public function testWithDateStringInvalid($input)
+    public function testWithDateStringInvalid($input): void
     {
         $factory = new DefaultSpecFactory();
 

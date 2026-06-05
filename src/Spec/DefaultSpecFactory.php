@@ -245,7 +245,7 @@ final class DefaultSpecFactory implements SpecFactoryInterface
      *
      * @return void
      */
-    private static function assertDateTimeObject($input)
+    private static function assertDateTimeObject($input): void
     {
         if (interface_exists('DateTimeInterface')) {
             Assert::isInstanceOf($input, 'DateTimeInterface');

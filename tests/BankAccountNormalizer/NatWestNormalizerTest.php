@@ -10,7 +10,7 @@ use Cs278\BankModulus\BankAccount;
 final class NatWestNormalizerTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider dataSupports */
-    public function testSupports($expected, $bankAccount)
+    public function testSupports($expected, $bankAccount): void
     {
         $normalizer = new NatWestNormalizer();
 
@@ -18,7 +18,7 @@ final class NatWestNormalizerTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataNormalize */
-    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount)
+    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount): void
     {
         $normalizer = new NatWestNormalizer();
 

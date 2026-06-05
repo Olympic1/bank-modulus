@@ -9,7 +9,7 @@ namespace Cs278\BankModulus\ModulusAlgorithm;
 final class DblAlTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider data */
-    public function testCheck($isValid, $remainder, $quotient, $modulus)
+    public function testCheck($isValid, $remainder, $quotient, $modulus): void
     {
         $modulus = $modulus();
 
@@ -17,7 +17,7 @@ final class DblAlTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider data */
-    public function testRemainder($isValid, $remainder, $quotient, $modulus)
+    public function testRemainder($isValid, $remainder, $quotient, $modulus): void
     {
         $modulus = $modulus();
 
@@ -25,7 +25,7 @@ final class DblAlTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider data */
-    public function testQuotient($isValid, $remainder, $quotient, $modulus)
+    public function testQuotient($isValid, $remainder, $quotient, $modulus): void
     {
         $modulus = $modulus();
 

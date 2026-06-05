@@ -7,7 +7,7 @@ namespace Cs278\BankModulus\Spec;
  */
 final class SimpleSpecFactoryTest extends \PHPUnit\Framework\TestCase
 {
-    public function testCreate()
+    public function testCreate(): void
     {
         $spec = new VocaLinkV390();
         $factory = new SimpleSpecFactory($spec);

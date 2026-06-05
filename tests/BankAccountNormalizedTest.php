@@ -8,7 +8,7 @@ namespace Cs278\BankModulus;
 final class BankAccountNormalizedTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider dataWithInvalidAccountNumber */
-    public function testWithInvalidAccountNumber($accountNumber)
+    public function testWithInvalidAccountNumber($accountNumber): void
     {
         try {
             new BankAccountNormalized(
@@ -33,7 +33,7 @@ final class BankAccountNormalizedTest extends \PHPUnit\Framework\TestCase
         $this->fail('Failed to catch exception');
     }
 
-    public function testGetOriginalBankAccount()
+    public function testGetOriginalBankAccount(): void
     {
         $account = BankAccountNormalized::createFromBankAccount(
             $original = new BankAccount('112233', '12345678')
@@ -42,7 +42,7 @@ final class BankAccountNormalizedTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($original, $account->getOriginalBankAccount());
     }
 
-    public function testGetSortCodeWithObject()
+    public function testGetSortCodeWithObject(): void
     {
         $sortCode = new SortCode('112233');
         $account = BankAccountNormalized::createFromBankAccount(
@@ -52,7 +52,7 @@ final class BankAccountNormalizedTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($sortCode, $account->getSortCode());
     }
 
-    public function testGetSortCodeWithString()
+    public function testGetSortCodeWithString(): void
     {
         $account = BankAccountNormalized::createFromBankAccount(
             new BankAccount('11-22 33', '12345678')
@@ -61,7 +61,7 @@ final class BankAccountNormalizedTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('112233', $account->getSortCode()->format('%s%s%s'));
     }
 
-    public function testGetAccountNumber()
+    public function testGetAccountNumber(): void
     {
         $account = BankAccountNormalized::createFromBankAccount(
             new BankAccount('112233', 'AC1-2345678')
@@ -70,7 +70,7 @@ final class BankAccountNormalizedTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('12345678', $account->getAccountNumber());
     }
 
-    public function testToString()
+    public function testToString(): void
     {
         $account = BankAccountNormalized::createFromBankAccount(
             new BankAccount('144441', '25555552')

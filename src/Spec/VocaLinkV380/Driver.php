@@ -327,7 +327,7 @@ final class Driver implements SpecInterface
      *
      * @return void
      */
-    private static function zeroizeFirst8(&$input)
+    private static function zeroizeFirst8(&$input): void
     {
         \assert(\is_array($input) && \count($input) >= 8);
 

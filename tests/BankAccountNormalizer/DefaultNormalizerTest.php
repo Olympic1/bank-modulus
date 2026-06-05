@@ -10,7 +10,7 @@ use Cs278\BankModulus\BankAccountNormalized;
  */
 final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
 {
-    public function testPassingInNormalizers()
+    public function testPassingInNormalizers(): void
     {
         $bankAccount = new BankAccount('08-32-16', '12345678');
         $expectedSortCode = '166432';
@@ -42,7 +42,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($bankAccount, $result->getOriginalBankAccount());
     }
 
-    public function testEmptyNormalizers()
+    public function testEmptyNormalizers(): void
     {
         $expectedSortCode = '122448';
         $expectedAccountNumber = '11223344';
@@ -59,7 +59,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataNormalize */
-    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount)
+    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount): void
     {
         $normalizer = new DefaultNormalizer();
 
@@ -72,7 +72,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataNormalize */
-    public function testNormalizeMixup($expectedSortCode, $expectedAccountNumber, $bankAccount)
+    public function testNormalizeMixup($expectedSortCode, $expectedAccountNumber, $bankAccount): void
     {
         $normalizer = new DefaultNormalizer();
         $prop = new \ReflectionProperty($normalizer, 'normalizers');
@@ -94,7 +94,7 @@ final class DefaultNormalizerTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataNormalize */
-    public function testSupports($expectedSortCode, $expectedAccountNumber, $bankAccount)
+    public function testSupports($expectedSortCode, $expectedAccountNumber, $bankAccount): void
     {
         $normalizer = new DefaultNormalizer();
 

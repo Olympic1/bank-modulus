@@ -10,7 +10,7 @@ use Cs278\BankModulus\BankAccount;
 final class SantanderNormalizerTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider dataSupports */
-    public function testSupports($expected, $bankAccount)
+    public function testSupports($expected, $bankAccount): void
     {
         $normalizer = new SantanderNormalizer();
 
@@ -18,7 +18,7 @@ final class SantanderNormalizerTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @dataProvider dataNormalize */
-    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount)
+    public function testNormalize($expectedSortCode, $expectedAccountNumber, $bankAccount): void
     {
         $normalizer = new SantanderNormalizer();
 

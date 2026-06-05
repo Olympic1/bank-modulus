@@ -73,7 +73,7 @@ final class Result implements BankAccountInterface
         if (!$realValidatedAt instanceof \DateTimeImmutable && !$realValidatedAt instanceof \DateTime) {
             throw new InvalidArgumentException(sprintf(
                 'validatedAt should be an instance of DateTimeImmutable, DateTime or null, got: `%s`',
-                \is_object($validatedAt) ? \get_class($validatedAt) : \gettype($validatedAt)
+                \is_object($validatedAt) ? $validatedAt::class : \gettype($validatedAt)
             ));
         }
 
