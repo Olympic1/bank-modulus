@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v1.16.0] - 2026-06-05
+
+### Added
+- Implemented VocaLink V7.90 specification.
+- Implemented VocaLink V8.10 specification.
+- Implemented VocaLink V8.50 specification.
+- Implemented VocaLink V8.70 specification.
+- Implemented VocaLink V8.90 specification.
+
+### Deprecated
+- PHP < 8.1 support will be removed in the next minor release.
+
 ## [v1.15.0] - 2024-05-03
 
 ### Added
