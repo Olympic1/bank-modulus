@@ -1,0 +1,40 @@
+name: Composer Rich Diff
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/composer-diff.yml'
+      - 'composer.json'
+      - 'composer.lock'
+      - 'vendor-bin/*/composer.json'
+      - 'vendor-bin/*/composer.lock'
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  diff:
+    name: Generate Diff
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: github.event.pull_request.draft == false
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: cs278/composer-rich-diff-action@94886e953383a617345020399027b129124ce342 # v1.3.0
+        with:
+          path: composer.json
+      - uses: cs278/composer-rich-diff-action@94886e953383a617345020399027b129124ce342 # v1.3.0
+        with:
+          path: vendor-bin/cs/composer.json
+      - uses: cs278/composer-rich-diff-action@94886e953383a617345020399027b129124ce342 # v1.3.0
+        with:
+          path: vendor-bin/cs2pr/composer.json
+      - uses: cs278/composer-rich-diff-action@94886e953383a617345020399027b129124ce342 # v1.3.0
+        with:
+          path: vendor-bin/phpstan/composer.json
