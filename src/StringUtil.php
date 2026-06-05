@@ -28,7 +28,7 @@ final class StringUtil
      *
      * @param string   $input
      * @param string   $regex
-     * @param \Closure $callback
+     * @param \Closure(array<string>): string $callback
      *
      * @return string
      */

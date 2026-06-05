@@ -62,6 +62,7 @@ final class DefaultSpecFactory implements SpecFactoryInterface
             $now->setTimezone($this->tz);
         }
 
+        // @phpstan-ignore function.alreadyNarrowedType, instanceof.alwaysTrue (Belt/braces)
         \assert($now instanceof \DateTime);
 
         $factory = new self();
