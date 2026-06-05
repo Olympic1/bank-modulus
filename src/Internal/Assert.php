@@ -9,10 +9,8 @@ final class Assert extends BaseAssert
 {
     /**
      * @param string $message
-     *
-     * @return void
      */
-    protected static function reportInvalidArgument($message): void
+    protected static function reportInvalidArgument($message): never
     {
         throw new InvalidArgumentException($message);
     }
