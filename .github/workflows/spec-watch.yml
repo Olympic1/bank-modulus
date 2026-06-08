@@ -1,0 +1,101 @@
+name: Watch for VocaLink specification updates
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-slim
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve latest specification PDF in repository
+        id: latest
+        run: |
+          latest=$(ls -d res/specifications/VocaLink-V* | sort -V | tail -n1)
+          echo "dir=${latest}" >> "$GITHUB_OUTPUT"
+          echo "pdf=${latest}/specification.pdf" >> "$GITHUB_OUTPUT"
+          echo "version=$(basename ${latest})" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch href for "Validating account numbers" from VocaLink website
+        id: href
+        run: |
+          html=$(curl -fsSL --retry 3 "https://www.vocalink.com/tools/modulus-checking/")
+          href=$(echo "$html" | grep -oP '(?<=href=")[^"]+(?="[^>]*>[^<]*Validating account numbers)')
+          if [ -z "$href" ]; then
+            echo "Could not find 'Validating account numbers' link on the VocaLink page" >&2
+            exit 1
+          fi
+          # Resolve relative URLs
+          case "$href" in
+            http*) full="$href" ;;
+            /*)    full="https://www.vocalink.com${href}" ;;
+            *)     full="https://www.vocalink.com/tools/modulus-checking/${href}" ;;
+          esac
+          echo "url=${full}" >> "$GITHUB_OUTPUT"
+
+      - name: Download specification PDF from website
+        run: |
+          curl -fsSL --retry 3 -o /tmp/spec-new.pdf "${{ steps.href.outputs.url }}"
+
+      - name: Compare PDFs
+        id: compare
+        run: |
+          hash_repo=$(sha256sum "${{ steps.latest.outputs.pdf }}" | awk '{print $1}')
+          hash_new=$(sha256sum /tmp/spec-new.pdf | awk '{print $1}')
+          echo "hash_repo=${hash_repo}" >> "$GITHUB_OUTPUT"
+          echo "hash_new=${hash_new}"   >> "$GITHUB_OUTPUT"
+          if [ "$hash_repo" = "$hash_new" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No change detected (${hash_repo})"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Change detected: repo=${hash_repo} website=${hash_new}"
+          fi
+
+      - name: Upload new PDF as artifact
+        if: steps.compare.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: specification-new
+          path: /tmp/spec-new.pdf
+          retention-days: 90
+
+      - name: Check for existing open issue
+        if: steps.compare.outputs.changed == 'true'
+        id: existing
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          count=$(gh issue list --repo "${{ github.repository }}" --state open \
+            --label "spec-update" --json number --jq 'length')
+          echo "count=${count}" >> "$GITHUB_OUTPUT"
+
+      - name: Create issue
+        if: steps.compare.outputs.changed == 'true' && steps.existing.outputs.count == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --repo "${{ github.repository }}" \
+            --title "New VocaLink modulus specification available" \
+            --label "spec-update" \
+            --body "$(cat <<EOF
+          A new modulus specification PDF has been detected on the VocaLink website.
+
+          **Download URL:** ${{ steps.href.outputs.url }}
+          **Compared against:** ${{ steps.latest.outputs.version }}
+          **SHA-256 (repo):** \`${{ steps.compare.outputs.hash_repo }}\`
+          **SHA-256 (website):** \`${{ steps.compare.outputs.hash_new }}\`
+
+          The new PDF has been attached to the workflow run as an artifact:
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          EOF
+          )"
