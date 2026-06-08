@@ -19,27 +19,39 @@ jobs:
       - name: Resolve latest specification PDF in repository
         id: latest
         run: |
-          latest=$(ls -d res/specifications/VocaLink-V* | sort -V | tail -n1)
+          latest=$(find res/specifications/ -maxdepth 1 -type d | sort | tail -n1)
           echo "dir=${latest}" >> "$GITHUB_OUTPUT"
           echo "pdf=${latest}/specification.pdf" >> "$GITHUB_OUTPUT"
           echo "version=$(basename ${latest})" >> "$GITHUB_OUTPUT"
 
+      - name: Install Python dependencies
+        run: pip install --no-cache-dir requests beautifulsoup4
+
       - name: Fetch href for "Validating account numbers" from VocaLink website
         id: href
         run: |
-          html=$(curl -fsSL --retry 3 "https://www.vocalink.com/tools/modulus-checking/")
-          href=$(echo "$html" | grep -oP '(?<=href=")[^"]+(?="[^>]*>[^<]*Validating account numbers)')
-          if [ -z "$href" ]; then
-            echo "Could not find 'Validating account numbers' link on the VocaLink page" >&2
-            exit 1
-          fi
-          # Resolve relative URLs
-          case "$href" in
-            http*) full="$href" ;;
-            /*)    full="https://www.vocalink.com${href}" ;;
-            *)     full="https://www.vocalink.com/tools/modulus-checking/${href}" ;;
-          esac
-          echo "url=${full}" >> "$GITHUB_OUTPUT"
+          url=$(python - <<'PY'
+          import sys
+          import requests
+          from bs4 import BeautifulSoup
+          from urllib.parse import urljoin
+
+          base = "https://www.vocalink.com/tools/modulus-checking/"
+          html = requests.get(base, timeout=30).text
+          soup = BeautifulSoup(html, "html.parser")
+
+          link = next(
+              (a for a in soup.find_all("a") if a.get_text(strip=True) == "Validating account numbers"),
+              None,
+          )
+          if not link:
+              print("Could not find 'Validating account numbers' link on the VocaLink page", file=sys.stderr)
+              sys.exit(1)
+
+          print(urljoin(base, link["href"]))
+          PY
+          )
+          echo "url=${url}" >> "$GITHUB_OUTPUT"
 
       - name: Download specification PDF from website
         run: |
